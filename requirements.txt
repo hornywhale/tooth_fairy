@@ -1,0 +1,4 @@
+Pyrogram~=2.0.106
+tgcrypto~=1.2.5
+pymorphy2~=0.9.1
+openai~=1.14.3
