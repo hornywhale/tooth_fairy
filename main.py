@@ -534,11 +534,14 @@ def get_chat_id(client, message: types.Message):
                                f"here's an error message: {error}")
 
 
-@app.on_message(filters.chat([_["id"] for _ in config["chats_serbia"]]))
+# print([_["id"] for _ in config["chats_serbia"]])
+# @app.on_message(filters.chat([_["id"] for _ in config["chats_serbia"]]))
+@app.on_message()
 async def parser(client, message: types.Message):
     # pure conditional matching
     try:
-        if message.text is not None:
+        if message.chat.id in [_["id"] for _ in config["chats_serbia"]] and message.text is not None:
+            print(message.text)
             for word in message.text.split(" "):
                 word = "".join(_ for _ in word if _.isalpha())
                 if analyzer.parse(word)[0].normal_form in KEYWORDS:
